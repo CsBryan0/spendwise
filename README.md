@@ -1,5 +1,5 @@
 
-# Sistema de Controle de Gastos Mensais
+# Spend Wise
 
 Um sistema para controle de gastos mensais que permite registrar despesas, visualizar saldo, e gerar relatórios de gastos.
 

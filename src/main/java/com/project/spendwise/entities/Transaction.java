@@ -1,6 +1,10 @@
 package com.project.spendwise.entities;
 
 
+import java.time.LocalDate;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,6 +21,8 @@ public class Transaction {
 	private Double amount;
 	@Enumerated(EnumType.STRING)
 	private TransactionType type;
+	@CreationTimestamp
+	private LocalDate creationTime;
 
 	public Transaction() {
 	}
@@ -58,5 +64,15 @@ public class Transaction {
 	public void setType(TransactionType type) {
 		this.type = type;
 	}
+
+	public LocalDate getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(LocalDate creationTime) {
+		this.creationTime = creationTime;
+	}
+	
+	
 
 }

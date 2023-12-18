@@ -11,15 +11,21 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotBlank(message = "Campo não informado")
 	private String description;
+	@Min(value = 1, message = "O valor da transação não pode ser inferior a 1")
 	private Double amount;
 	@Enumerated(EnumType.STRING)
+	@NotEmpty(message = "Campo não informado")
 	private TransactionType type;
 	@CreationTimestamp
 	private LocalDate creationTime;

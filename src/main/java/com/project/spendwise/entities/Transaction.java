@@ -13,7 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Transaction {
@@ -25,7 +25,6 @@ public class Transaction {
 	@Min(value = 1, message = "O valor da transação não pode ser inferior a 1")
 	private Double amount;
 	@Enumerated(EnumType.STRING)
-	@NotEmpty(message = "Campo não informado")
 	private TransactionType type;
 	@CreationTimestamp
 	private LocalDate creationTime;

@@ -57,8 +57,6 @@ public class TransactionController {
 			
 			erros.put(fieldName, errorMessage);
 		});
-		
-		
 		return erros;
 	}
 
@@ -68,25 +66,24 @@ public class TransactionController {
 		return new ResponseEntity<>(transactions, HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<Optional<Transaction>> getTransactionById(@PathVariable int id) {
 		Optional<Transaction> transaction = transactionService.getTransactionById(id);
 		if (transaction.isPresent()) {
 			return new ResponseEntity<>(transaction, HttpStatus.OK);
-
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
-	@GetMapping("/{type}")
-	public ResponseEntity<List<Transaction>> getTransactionByType(TransactionType type){
-		List<Transaction> typeOfTransaction = transactionService.getTransactionByType(type);
+	
+	@GetMapping("/type/{type}")
+	public ResponseEntity<List<Transaction>> getTransactionByType(@PathVariable TransactionType type){
+		List <Transaction> transactions = transactionService.getTransactionByType(type);
 		
-		if(typeOfTransaction.isEmpty()) {
+		if (transactions.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(typeOfTransaction, HttpStatus.OK);
+			return new ResponseEntity<>(transactions, HttpStatus.OK);
 		}
 	}
 
@@ -120,10 +117,6 @@ public class TransactionController {
 		if(removedTransaction != null) {
 			return ResponseEntity.ok(removedTransaction);
 		}
-		
 		return ResponseEntity.notFound().build();
-	
 	}
-
-
 }

@@ -56,7 +56,22 @@ public class TransactionServiceTest {
 		
 		assertEquals(870.0, transactionService.getTotalBalance());
 		
+	}
+	
+	@Test
+	public void testAddThirdExpenseTransaction() {
+		Transaction transaction = new Transaction("Cartão de Crédito", 450.0, TransactionType.EXPENSE);
 		
+		when(transactionRepository.save(any(Transaction.class))).thenReturn(transaction);
+		
+		Transaction addTransaction = transactionService.addTransaction(transaction);
+		
+		assertNotNull(addTransaction);
+		assertEquals("Cartão de Crédito", addTransaction.getDescription());
+		assertEquals(450.0, addTransaction.getAmount());
+		assertEquals(TransactionType.EXPENSE, addTransaction.getType());
+		
+		assertEquals(420.0, transactionService.getTotalBalance());
 	}
 
 	@Test

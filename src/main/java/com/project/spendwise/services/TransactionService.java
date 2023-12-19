@@ -29,7 +29,6 @@ public class TransactionService {
 		} else if (transaction.getType() == TransactionType.INCOME) {
 			updateBalance(transaction.getAmount(), transaction.getType());
 		}
-
 		return transactionRepository.save(transaction);
 	}
 
@@ -80,7 +79,6 @@ public class TransactionService {
 		}
 	}
 	
-	
 	public Transaction removeTransaction(int id) {
 		Optional<Transaction> transactionToRemove = transactionRepository .findById(id);
 		
@@ -96,16 +94,4 @@ public class TransactionService {
 		
 		return null;
 	}
-	
-	/*
-	 * private void updateBalanceOnDeletion(Transaction removeTransaction) { double
-	 * amount = removeTransaction.getAmount(); TransactionType type =
-	 * removeTransaction.getType();
-	 * 
-	 * if(type == TransactionType.EXPENSE) { totalBalance -= amount; } else if (type
-	 * == TransactionType.INCOME) { totalBalance += amount; }
-	 * 
-	 * }
-	 */
-
 }
